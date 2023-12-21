@@ -88,11 +88,29 @@ export default function App() {
     });
   }
 
+  async function sendPushNotificationHandler() {
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to: "",
+        title: "Test - sent from a device",
+        body: "This is a test!",
+      }),
+    });
+  }
+
   return (
     <View style={styles.container}>
       <Button
         title="Schedule Notification"
         onPress={scheduleNotificationHandler}
+      />
+      <Button
+        title="Send Push Notification"
+        onPress={sendPushNotificationHandler}
       />
       <StatusBar style="auto" />
     </View>
